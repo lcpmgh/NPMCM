@@ -14,7 +14,7 @@ server <- function(input, output){
   }
   # windowsFonts(myFont=windowsFont("微软雅黑"))
   showtext_auto()
-  font_add("myFont", file_dir('D:/#R/GMCM/v2.0/data-GB2312/front/msyh.ttc')) # 你的中文字体位置
+  font_add("myFont", './front/msyh.ttc')    #加载中文字体
   
   ########## 数据区 ##########
   read_data_team <- reactive({
@@ -30,7 +30,8 @@ server <- function(input, output){
   })
   
   read_map_data <- reactive({
-    china_map   <- readOGR(file_dir('mapdata/bou2_4p.shp'), stringsAsFactors=FALSE)
+    # 读取地图数据
+    china_map   <- readOGR('./mapdata/bou2_4p.shp', stringsAsFactors=FALSE)
     mydata1     <- china_map@data %>% 
       as.data.table() %>% 
       .[, id:=(as.numeric(row.names(.))-1)] %>% 
