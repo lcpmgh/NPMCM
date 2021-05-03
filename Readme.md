@@ -24,19 +24,19 @@
 
 （1）按队伍的获奖统计
 
-![shinyapp page 1](.\pic\shinyapp-page-1.png)
+![shinyapp page 1](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/pic/shinyapp-page-1.png)
 
 （2）按成员的获奖统计
 
-![shiny app page 2](.\pic\shinyapp-page-2.png)
+![shiny app page 2](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/pic/shinyapp-page-2.png)
 
 （3）连续获奖统计
 
-![shiny app page 3](.\pic\shinyapp-page-3.png)
+![shiny app page 3](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/pic/shinyapp-page-3.png)
 
 （4）数据库查询系统
 
-![shiny app page 4](.\pic\shinyapp-page-4.png)
+![shiny app page 4](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/pic/shinyapp-page-4.png)
 
 
 
