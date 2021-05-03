@@ -2,7 +2,7 @@
 ########################################################
 server <- function(input, output){
   ########## 函数准备 ##########
-  file_dir <- function(name = NULL){paste0('D:/#R/GMCM/v2.0/data-GB2312/', name)}
+  file_dir <- function(name = NULL){paste0('D:/#R/NPMCM/v2.0/data-GB2312/', name)}
   trans <- function(x){
     # 为图例命名时，按动态选择进行更改用
     y1 <- y2 <- y3 <- NA_character_

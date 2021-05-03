@@ -1,0 +1,13 @@
+name: shiny_app
+title: shiny_app
+username:
+account: lcpmgh
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4062101
+bundleId: 4543524
+url: https://lcpmgh.shinyapps.io/shiny_app/
+when: 1619874784.01133
+lastSyncTime: 1619874784.01133
+asMultiple: FALSE
+asStatic: FALSE
