@@ -22,7 +22,7 @@ ui <- fluidPage(
   tabsetPanel(
     type = 'pills',
     tabPanel('By team',
-             h3("综合获奖率年际变化（单位%）", align = "center"),
+             h3("获奖率年际变化（单位%）", align = "center"),
              tags$div(id = "plot_11", style = "width:100%;height:300px;"),
              deliverChart(div_id = "plot_11"),
              tags$hr(),

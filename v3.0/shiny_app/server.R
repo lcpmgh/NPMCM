@@ -55,11 +55,16 @@ server <- function(input, output){
   ##### 2.1 第一页 #####
   # 2.1.1 创建【图1-1】所需数据
   create_data11 <- reactive({
-    tdata11 <- read_data_team() %>% 
+    data11 <- read_data_team() %>% 
       dcast(Year~A_type, value.var = 'Year', fun = length) %>% 
-      .[,p:=apply(.SD, 1, function(x){round((1-x[4]/sum(x))*100,2)}), .SDcols=2:5] %>% 
-      .[p==100, p:=NA]
-    data11 <- data.frame(tdata11[,6]) %>% set_rownames(tdata11[[1]]) %>% set_colnames('综合获奖率')
+      .[,s:=apply(.SD, 1, sum), .SDcols=2:5] %>% 
+      .[, round(.SD/s*100,2), .SDcol=2:5, by='Year'] %>% 
+      .[, s:=100-.SD, .SDcols=5] %>% 
+      .[s==100, c('一等奖','二等奖','三等奖','s'):=.(NA,NA,NA,NA)] %>% 
+      as.data.frame() %>% 
+      set_rownames(.,.[,1]) %>% 
+      dplyr::rename('综合获奖率'=s) %>% 
+      .[,c(2,3,4,6)]
     return(data11)
   })
   # 2.1.2 创建【图1-2】所需数据
@@ -119,7 +124,7 @@ server <- function(input, output){
       .[A_type %in% input$inp_21&Year>=input$inp_22[1]&Year<=input$inp_22[2], ] %>% 
       .[Province!='国外', .(Count=length(Year)), by = .(Province)] %>% 
       set_colnames(c('NAME','Count'))
-    data22_1 <- data22[china_map_data, on = "NAME"] %>% .[is.na(Count), Count:=0]
+    data22_1 <- data22[china_map_data, on = "NAME"] %>% .[is.na(Count), Count:=0] 
     data22_2 <- data22[province_city, on='NAME'] %>% .[is.na(Count), Count:=0]
     return(list(y1 = data22_1, y2 = data22_2))
   })
@@ -205,14 +210,14 @@ server <- function(input, output){
   
   
   ##### 3.2 第二页 #####
-  # 3.2.1 【图2-1】，获奖最多培养单位
+  # 3.2.1 【图2-1】，获奖人次最多培养单位
   output$plot_21 <- renderPlot({
     ggplot(create_data21(), aes(reorder(Unit, Freq), Freq, label = Freq))+
       geom_bar(stat = 'identity', fill = '#57ADF3', color = 'white')+
       geom_text(size = 5, stat = 'identity', hjust = 1, vjust = 0.5)+
       scale_y_continuous(expand = expansion(mult = c(0,0.02)))+
-      labs(x = '院校名称', y = '获奖数量',
-           title = sprintf('获奖数量最多的前%d个培养单位', input$inp_23),
+      labs(x = '院校名称', y = '人次',
+           title = sprintf('获奖人次最多的%d个培养单位', input$inp_23),
            caption = sprintf('统计区间：%d-%d年， 统计奖项：%s', input$inp_22[1], input$inp_22[2], trans(input$inp_21)))+
       coord_flip()+
       theme_light()+
@@ -222,7 +227,7 @@ server <- function(input, output){
             plot.caption = element_text(size = 12), 
             text = element_text(family = 'myFont'))
   })
-  # 3.2.2 【图2-2】，各省获奖数量
+  # 3.2.2 【图2-2】，各省获奖人次
   output$plot_22 <- renderPlot({
     data22 <- create_data22()
     ggplot()+
@@ -232,7 +237,7 @@ server <- function(input, output){
       coord_map("polyconic") +
       scale_fill_gradient2(low = '#FFFFFF', high = '#006D2C')+
       theme_void()+
-      labs(title = '各省获奖数量',
+      labs(title = '各省获奖人次', fill = '人次',
            caption = sprintf('统计区间：%d-%d年， 统计奖项：%s',input$inp_22[1],input$inp_22[2],trans(input$inp_21)))+
       theme(plot.title=element_text(size = 25, hjust = 0.5),
             plot.caption=element_text(size = 12), 
@@ -247,8 +252,8 @@ server <- function(input, output){
       geom_bar(stat = 'identity', fill = '#57ADF3', color = 'white')+
       geom_text(size = 5, stat = 'identity', hjust = 1, vjust = 0.5)+
       scale_y_continuous(expand = expansion(mult = c(0,0.02)))+
-      labs(x = '院校名称', y = '获奖数量',
-           title = sprintf('连续%d-%d次获奖数量最多的前%d个培养单位', input$inp_31[1], input$inp_31[2], input$inp_33),
+      labs(x = '院校名称', y = '人数',
+           title = sprintf('连续%d-%d次获奖人数最多的%d个培养单位', input$inp_31[1], input$inp_31[2], input$inp_33),
            caption = sprintf('统计区间：%d-%d年， 统计次数：%d-%d', input$inp_32[1], input$inp_32[2], input$inp_31[1], input$inp_31[2]))+
       coord_flip()+
       theme_light()+
@@ -268,7 +273,7 @@ server <- function(input, output){
       coord_map("polyconic") +
       scale_fill_gradient2(low = '#FFFFFF', high = '#006D2C')+
       theme_void()+
-      labs(title = sprintf('各省连续%d-%d次获奖数量', input$inp_31[1], input$inp_31[2]),
+      labs(title = sprintf('各省连续%d-%d次获奖人数', input$inp_31[1], input$inp_31[2]), fill='人数',
            caption = sprintf('统计区间：%d-%d年， 统计次数：%d-%d',input$inp_32[1], input$inp_32[2], input$inp_31[1], input$inp_31[2]))+
       theme(plot.title=element_text(size = 25, hjust = 0.5),
             plot.caption=element_text(size = 12), 
