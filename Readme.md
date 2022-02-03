@@ -2,11 +2,11 @@
 
 本项目收集了2004年（第一届）至今中（全）国研究生数学建模竞赛获奖数据，并基于R语言，进行了数据处理和可视化的工作。
 
-这项工作最初的起因是，作者和队友在2015、2016、2017年参赛并获奖后，好奇一共有多少人连续获奖以及他们来自于哪个省份和学校。于是2017年底，我开始收集数据、敲代码。由于当时正值毕业，也面临着从matlab转出选语言的问题，认准R语言的我便开始使用R来写这部分代码，因此当时那一版惨不忍睹。2018年9月15日，台风山竹正面袭击广州深圳，被迫呆在家里的我，发现正好是当年落户杯开赛的日子，于是我决定把这个代码重写了一遍，并发布到github上。2020开年的新冠肺炎疫情期间，没法去办公室的我，看了Hadley 大神的Advanced R一书，并整合自己2019年所学，开始重新审视自己的编程水平，于是决定再一次修改这个代码，并且决定，以后每年都要来修改一次，以见证每年收获和进步。
+这项工作最初的起因是，作者和队友在2015、2016、2017年参赛并获奖后，好奇一共有多少人连续获奖以及他们来自于哪个省份和学校。于是2017年底，我开始收集数据、敲代码。由于当时正值毕业，也面临着从matlab转出选语言的问题，认准R语言的我便开始使用R来写这部分代码，因此当时那一版惨不忍睹。2018年9月15日，台风山竹正面袭击广州深圳，被迫呆在家里的我，发现正好是当年落户杯开赛的日子，于是我决定把这个项目重写了一遍，并发布到github上。2020开年的新冠肺炎疫情期间，不能去办公室的我，看了Hadley 大神的Advanced R一书，并整合自己2019年所学，开始重新审视自己的编程水平，于是决定再一次修改这个代码，并且决定，以后每年都要来修改一次，以见证每年收获和进步。
 
 关于项目的几个说明：
 
-1. 中国研究生数学建模竞赛（原名全国研究生数学建模竞赛），[官网网址（新）](https://cpipc.chinadegrees.cn/cw/hp/4 )，[官方网址（旧）](http://gmcm.seu.edu.cn/main.htm)，2004年开办，每年9月开赛、11月~12月会公布当年获奖结果，旧网址曾经有历年数据，不过目前404了；
+1. 中国研究生数学建模竞赛（原名全国研究生数学建模竞赛），[官网网址（新）](https://cpipc.chinadegrees.cn/cw/hp/4 )，[官方网址（旧）](http://gmcm.seu.edu.cn/main.htm)，2004年开办，每年9月开赛、11月~12月会公布当年获奖结果，旧网址曾经有历年获奖数据，不过目前404了；
 2. 官方公布的获奖名单，包含一等奖、二等奖、三等奖以及成功参与（参赛、参加）奖，但是基本上参赛、提交并未被认定为作弊就能拿到成功参与奖，所以这里将获奖名单视为参赛名单，其中的一二三等奖视为获奖；
 3. 部分年份获奖名单中无题型信息，则视其题型全部为N；
 4. 对于个人“连续获奖”这个概念，每个版本可能有不同算法，但基本原则是：
@@ -15,35 +15,43 @@
    - 如果张三于2005年获奖，并于2007、2008年获奖，则将其视为两次连续获奖，第一次为1连，第二次为2连
 5. 其他详细说明见每个版本内的README文件
 
-研究生阶段三年的数模比赛经历，有惊喜也有遗憾，非常感谢我的队友。我只是个水平有限的R语言爱好者，写此项目也是出于对R语言的实践和喜爱，本项目仅限R语言爱好者学习和交流，欢迎提出问题、讨论和交流。
+研究生阶段三年的数模比赛经历，有惊喜也有遗憾，非常感谢我的队友。我只是个水平有限的R语言爱好者，写此项目也是出于对R语言的实践和喜爱，本项目仅限R语言爱好者学习，切勿用于营利或其他违法目的。同时，也欢迎提出问题、讨论和交流。
 
 最后，希望这个项目对你有所帮助。
 
 ---
 
-## 可视化内容展示（shinyapp）
+## 可视化内容展示（应用已部署：[NPMCM](http://47.108.64.91:3838/NPMCM)）
 
-（1）按队伍的获奖统计
+1. 数据库查询系统
 
-![shinyapp page 1](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/pic/shinyapp-page-1.png)
+![shiny_app_page_1](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/v4.0/shiny_preview/shiny_app_page_1.png)
 
-（2）按成员的获奖统计
+2. 按队伍的获奖统计
 
-![shiny app page 2](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/pic/shinyapp-page-2.png)
+![shiny_app_page_2](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/v4.0/shiny_preview/shiny_app_page_2.png)
 
-（3）连续获奖统计
+3. 按成员的获奖统计
 
-![shiny app page 3](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/pic/shinyapp-page-3.png)
+![shiny_app_page_3](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/v4.0/shiny_preview/shiny_app_page_3.png)
 
-（4）数据库查询系统
+4. 连续获奖统计
 
-![shiny app page 4](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/pic/shinyapp-page-4.png)
-
-
+![shiny_app_page_4](https://raw.githubusercontent.com/lcpmgh/NPMCM/master/v4.0/shiny_preview/shiny_app_page_4.png)
 
 ---
 
 ## 更新日志：
+
+### 2022-02-01 v4.0：
+
+1. **更新工具和数据**：使用Centos7.9.2009平台编程，其中R语言版本为v4.1.2，Rstudio Server版本为2021.09.2 Build 382，所有涉及到的packages在使用前都已于2022年01月升级到最新版本。获奖数据更新到2021年第十八届。
+2. **更改关键R包**：可视化程序中，使用REmap包代替之前版本中的rgdal包，进行获奖数据省域分布图的绘制，相比之下REmap绘制的地图有以下优点，1不再需要处理shap数据从而提高效率，2动态化地图更易于交互界面查看。
+3. **更改数据中省份名称**：由于改用REmap包，由原来rgdal使用的省份长名（如“北京市”），转变为REmap包使用的省份短名（如“北京”），因此将数据1-unit_info_internet.csv和3-unit_info_dataset.csv中的省份名称改为短名，同样的，数据处理结果中，相应文件中的省份名称也转变为短名。
+4. **更改可视化程序中的页面布局顺序**：编写shinyapp过程中发现，REmap包显示地图，与其他控件不兼容（推测），表现为若先点击REmap地图所在页面，则其他页面的部分控件（包括shinyWidgets控件、DT表格、reactable表格）将无法显示，此bug我暂时无法解决。权宜之计，改变之前版本的页面布局顺序，将之DT包展示的获奖数据库页面，调整为可视化程序的首页。
+5. **更改可视化程序的代码结构**：简化shinyapp中的UI函数，改用uiOutput和renderUI，优点是可以根据数据内容生成控件参数值，避免每次更新数据后都要修改控件（例如UI中年份选择范围）；另外，按UI的tablepanels页面（而不是之前版本中的按数据和模块）组织代码，尽量做到将renderUI和对应数据、output函数放在一起，便于维护。
+6. **部署shinyapp至云服务器**：此项目的shinyapp已部署在云服务器上，欢迎访问[NPMCM](http://47.108.64.91:3838/NPMCM)。
+7. **其他细节**：在data_processing.R中补充说明了仅更新获奖数据时的执行步骤；在shiyapp中调整了队伍页面的展示图，改为获奖率、获奖数量和获奖构成相关的五个图；修改了shinyapp中的其他一些细节问题；修改了data文件夹中readme文件，添加了对该文件夹中的数据的说明。
 
 ### 2021-05-01 v3.0：
 
