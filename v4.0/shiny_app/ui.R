@@ -12,7 +12,7 @@ library(ECharts2Shiny)
 library(shinyWidgets)
 library(ggplot2)
 library(REmap)
-library(DT)
+library(reactable)
 
 ##### 2. ui function #####
 ui <- fluidPage(
@@ -27,10 +27,16 @@ ui <- fluidPage(
               tabPanel(title = '个人连续获奖', uiOutput("ui_p41"), uiOutput("ui_p42"))
               ),
   tags$hr(),
-  column(12, align = "center", actionLink(inputId = "github",
-                                            label = "Github",
-                                            icon = icon("github"),
-                                            onclick ="window.open('https://github.com/lcpmgh/NPMCM')")),
-  tags$footer("--- Designed by PMGH ---", align = 'center')
-
+  tags$div(align = "center", 
+           tags$p("--- Designed by PMGH ---"),
+           actionLink(inputId = "", label = "Github", icon = icon("github"), onclick ="window.open('https://github.com/lcpmgh/NPMCM')"),
+           tags$p("  ", style = "display:inline;white-space:pre"),
+           tags$p("Email: lcpmgh@gmail.com", style="display:inline;white-space:pre"),  
+           tags$div(align = "center",
+                    # tags$img(src="http://www.beian.gov.cn/portal/download"),
+                    # tags$a("冀ICP备2022003075号", target="_blank", href="https://beian.miit.gov.cn", style="color:#06c; display:inline;"),
+                    # tags$p("  ", style = "display:inline;white-space:pre"),
+                    tags$a("冀ICP备2022003075号", target="_blank", href="http://beian.miit.gov.cn", style="color:#06c; display:inline;")
+           )
+  )
 )

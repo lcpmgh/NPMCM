@@ -45,17 +45,26 @@ server <- function(input, output){
   })
   output$ui_p12 <- renderUI({
     tagList(
-      h3("获奖数据查询"),
-      dataTableOutput("p1_table")
+      h3("获奖数据查询", align = "center"),
+      reactableOutput("p1_table")
     )
   })
-  output$p1_table <- renderDataTable({
+  output$p1_table <- renderReactable({
     if(length(input$p1_input1) == 0) sYear <- unique(data_team$Year) else sYear <- input$p1_input1
     if(length(input$p1_input2) == 0) sA_type <- unique(data_team$A_type) else sA_type <- input$p1_input2
     if(length(input$p1_input3) == 0) sQ_type <- unique(data_team$Q_type) else sQ_type <- input$p1_input3
     p1_data <- data_team %>% .[Year %in% sYear & A_type %in% sA_type & Q_type %in% sQ_type, 1:10] %>% 
       set_colnames(c("题目类型", "队伍编号", "队长姓名", "队长培养单位", "第一队员姓名", "第一队员培养单位", "第二队员姓名", "第二队员培养单位", "所获奖项", "参赛年份"))
-    DT::datatable(p1_data, options = list(pageLength = 10, autoWidth = TRUE, scrollX = TRUE))
+    reactable(p1_data,
+              defaultPageSize = 20,
+              searchable  = T,
+              showPageSizeOptions = T,
+              highlight = T,
+              striped = T,
+              compact = T,
+              resizable = T,
+              height = "700px",
+              fullWidth = T)
   })
   
   ##### 2. Page2 #####
@@ -167,7 +176,7 @@ server <- function(input, output){
       geom_bar(stat = 'identity', fill = '#57ADF3', color = 'white')+
       geom_text(size = 9, stat = 'identity', hjust = 0, vjust = 0.5)+
       scale_y_continuous(expand = expansion(mult = c(0,0.3)))+
-      labs(x = '培养单位', y = '获奖人次')+
+      labs(x = "", y = "")+
       coord_flip()+
       theme_light()+
       theme(axis.text = element_text(size = 18),
@@ -241,7 +250,7 @@ server <- function(input, output){
         geom_bar(stat = 'identity', fill = '#57ADF3', color = 'white')+
         geom_text(size = 9, stat = 'identity', hjust = 0, vjust = 0.5)+
         scale_y_continuous(expand = expansion(mult = c(0,0.3)))+
-        labs(x = '培养单位', y = '人数')+
+        labs(x = "", y = "")+
         coord_flip()+
         theme_light()+
         theme(axis.text = element_text(size = 18),
