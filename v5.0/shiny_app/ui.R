@@ -16,6 +16,8 @@ library(DT)
 
 ##### 2. ui function #####
 ui <- fluidPage(
+  tags$head(tags$title("NPMCM")),
+  tags$head(tags$link(rel = "shortcut icon", href = "pmgh.ico")),
   loadEChartsLibrary(),
   loadEChartsTheme("shine"),
   titlePanel(title = "中国研究生数学建模竞赛获奖信息可视化系统"),
@@ -28,14 +30,14 @@ ui <- fluidPage(
               ),
   tags$hr(),
   tags$div(align = "center", 
-           tags$p("--- Designed by PMGH ---"),
+           tags$p("\ua9 2021-2022, LIANG Chen, Institute of Mountain Hazards and Environment, CAS. All rights reserved.", style="height:8px"),
            actionLink(inputId = "", label = "Github", icon = icon("github"), onclick ="window.open('https://github.com/lcpmgh/NPMCM')"),
            tags$p("  ", style = "display:inline;white-space:pre"),
            tags$p("Email: lcpmgh@gmail.com", style="display:inline;white-space:pre"),  
            tags$div(align = "center",
                     tags$a("冀ICP备2022003075号", target="_blank", href="https://beian.miit.gov.cn", style="color:#06c; display:inline;"),
                     tags$p("  ", style = "display:inline;white-space:pre"),
-                    tags$img(src="http://www.beian.gov.cn/portal/download"),
+                    tags$img(src="gaba.png"),
                     tags$a("川公网安备51010702002736", target="_blank", href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010702002736", style="color:#06c; display:inline;")
            )
   )
